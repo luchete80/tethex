@@ -47,6 +47,12 @@ int main(){
   try
   {
     mesh.read(input_file);
+    cout << "mesh readed. "<<endl;
+      cout << "Vertices: "<<mesh.get_n_vertices()<<endl;
+        cout << "Edges: "<<mesh.get_n_edges()<<endl; 
+        cout << "Lines: "<<mesh.get_n_lines()<<endl;
+        cout << "Points: "<<mesh.get_n_points()<<endl;
+        
   }
   catch (std::runtime_error &e)
   {
@@ -77,7 +83,10 @@ int main(){
   triangles[0].set_edge(0, 0);
   triangles[0].set_edge(1, 1);
   triangles[0].set_edge(2, 2);
+  
+  
 
+  /*
   std::vector<Quadrangle> quadrangles;
   quadrangles.push_back(Quadrangle(0, 3, 6, 4, 11));
   quadrangles.push_back(Quadrangle(1, 5, 6, 3, 11));
@@ -94,7 +103,9 @@ int main(){
   std::vector<PhysPoint> points;
   points.push_back(PhysPoint(0, 41));
   points.push_back(PhysPoint(2, 42));
-
+  
+  
+  
   // once again for converted mesh
   new_vertices.clear(); // vertices already include new_vertices
   edges.clear(); // we don't generate edges for quadrangles
@@ -102,7 +113,7 @@ int main(){
 #if defined(DELETE_SIMPLICES)
   triangles.clear(); // there are no triangles anymore
 #endif
-
+*/
 
   
 return 0;
