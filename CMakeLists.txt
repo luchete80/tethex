@@ -51,14 +51,21 @@ set(HDR_LIST tethex.h testing.h)
 # --- Google Test ---
 if(TESTING)
   message("ATTENTION! This is a version with testing features!")
-  set(GTEST_DIR /u/artemyev/software/gtest-1.7.0 CACHE PATH "Path to Google Test top level directory")
+  #set(GTEST_DIR /u/artemyev/software/gtest-1.7.0 CACHE PATH "Path to Google Test top level directory")
+  #set(GTEST_DIR "$HOME/Numerico/googletest/googletest" CACHE PATH "Path to Google Test top level directory")
+  set(GTEST_DIR "/home/weldform-pc/Numerico/googletest/googletest")
+  message ("GTEST_DIR is " ${GTEST_DIR})
+  #set(GTEST_LIB "$HOME/Numerico/googletest/build/lib/libgtest.a" CACHE PATH "Path to Google Test top level directory")
   find_library(GTEST_LIB gtest PATHS ${GTEST_DIR} PATH_SUFFIXES "lib" "build")
+  include_directories(${GTEST_DIR}/include)
   if(GTEST_LIB)
     message("GTest library is ${GTEST_LIB}")
   else()
     message(FATAL_ERROR "GTest was not found!")
   endif()
   include_directories(${GTEST_DIR}/include)
+  message("GTEST include " ${GTEST_DIR}/include)
+  
 endif()
 
 
@@ -80,6 +87,7 @@ if(TESTING)
   target_link_libraries(${PROJECT_NAME} ${GTEST_LIB} pthread)
 endif()
 
+add_executable(test test.cpp tethex.cpp)
 
 # --- packaging of the library ---
 set(PACKAGE_FILE_NAME
