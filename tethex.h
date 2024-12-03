@@ -836,6 +836,12 @@ public:
                  * Constructor - nothing special
                  */
   Mesh();
+  
+  //NEW LUCHETE80 CONSTRUCTOR,FROM VECTOR
+  Mesh(std::vector<Point>, 
+       //std::vector<Line>,  //LINES
+       std::vector<Triangle>);
+       //std::vector<MeshElement*>); //TRIAS OR TETRAS
 
                 /**
                  * Destructor - to clean the memory

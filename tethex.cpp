@@ -1940,6 +1940,37 @@ double cell_measure_3D(const std::vector<Point> &vertices,
   return (t34+t64+t95+t125+t156+t181+t207+t228)/12.;
 }
 
+ Mesh::Mesh(std::vector<Point>v, 
+       //std::vector<Line>l,  //LINES
+       std::vector<Triangle>tria)
+  : vertices()
+  , points()
+  , lines()
+  , edges()
+  , faces()
+  , triangles()
+  , tetrahedra()
+  , quadrangles()
+  , hexahedra()
+  , n_converted_quadrangles(0)
+  , n_converted_hexahedra(0)
+  , physical_names()       
+       {
+  
+  int n_vertices = v.size();
+  vertices.resize(n_vertices);
+  for (int vv=0;vv < n_vertices;vv++){
+    vertices[vv] = v[vv]; // save the vertex    
+  }
+  //lines.resize(l.size());  
+  int n_triangles= tria.size();
+  
+  triangles.resize(n_triangles);
+  for (int t=0;t<n_triangles;t++){
+    triangles[t]=new Triangle(tria[t]);
+  }
+}
 
 } // namespace tethex
+
 

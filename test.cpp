@@ -64,6 +64,13 @@ int main(){
   cout << "Vertices: "<<mesh.get_n_vertices()<<endl;
   mesh.write(output_file);
   
+  
+  std::vector<Point> vert; 
+  std::vector<MeshElement*> lines;
+  std::vector<MeshElement*> trias;
+
+  //Mesh mesh2(vert,lines,trias);  
+  
   // vertices and mesh elements from the file
   std::vector<Point> vertices;
   vertices.push_back(Point(0, 0, 0));
@@ -75,8 +82,8 @@ int main(){
   edges.push_back(Line(0, 2, 11));
   edges.push_back(Line(1, 2, 11));
 
-  std::vector<Line> lines;
-  std::vector<Line> new_lines;
+  //std::vector<Line> lines;
+  //std::vector<Line> new_lines;
 
   std::vector<Triangle> triangles;
   triangles.push_back(Triangle(0, 1, 2, 11));
@@ -84,8 +91,21 @@ int main(){
   triangles[0].set_edge(1, 1);
   triangles[0].set_edge(2, 2);
   
+  Mesh mesh2(vertices,triangles);  
   
-
+  
+  cout << "MESH FROM VECTOR ------------------------"<<endl;
+  cout << "BEFORE Conversion:------------------"<<endl;
+  cout << "Vertices: "<<mesh2.get_n_vertices()<<endl;
+  cout << "Trias: "<<mesh2.get_n_triangles()<<endl;
+  cout << "Quads: "<<mesh2.get_n_quadrangles()<<endl;
+  mesh2.convert();
+  cout << "AFTER Conversion:------------------"<<endl;
+  cout << "Mesh 2 Vertices: "<<mesh2.get_n_vertices()<<endl;
+  cout << "Trias: "<<mesh2.get_n_triangles()<<endl;
+  cout << "Mesh 2 Quads: "  <<mesh2.get_n_quadrangles()<<endl;
+  mesh.write("mesh2_hex.msh");
+  
   /*
   std::vector<Quadrangle> quadrangles;
   quadrangles.push_back(Quadrangle(0, 3, 6, 4, 11));
